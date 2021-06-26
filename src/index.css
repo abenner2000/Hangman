@@ -11,3 +11,124 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.ManDrawing{
+  text-align:center;
+  color: black;
+  font-size: 6vh;
+}
+
+.WordBankTitle{
+  width: 90%;
+  height: 10vh;
+  border-radius: 5px;
+  margin-left: 2vh;
+  background-color: rgb(175, 199, 202);
+  box-shadow: 1px 2px black;
+}
+
+.headertext {
+  font-size: 4vh;
+  color: white;
+  text-shadow: 1px 1px black;
+  text-align: center;
+}
+
+.GBText {
+  font-size: 3vh;
+  color: black;
+  text-align: left;
+  margin-top: 1vh;
+  margin-left: 1vh;
+}
+
+.GuessField {
+  font-size: 7vh;
+  color: black;
+  text-align: center;
+  width: 100%;
+}
+
+.LHS {
+  background-color: lightblue;
+  height: 100vh;
+  width: 70%;
+  float: left;
+  border-radius: 5px;
+}
+
+.RHS {
+  background-color: steelblue;
+  height: 100vh;
+  width: 30%;
+  float: left;
+  border-radius: 5px;
+}
+
+.WF {
+  background-color: white;
+  height: 10vh;
+  width: 80%;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 10vh;
+  position: relative;
+  box-shadow: 1px 1px black;
+}
+
+.DS{
+  background-color: white;
+  height: 50vh;
+  width: 80%;
+  border-radius: 5px;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10vh;
+  box-shadow: 1px 1px black;
+}
+
+.GuessBoxContainer{
+  height: 20vh;
+  width: 80%;
+  border-radius: 5px;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10vh;
+}
+
+.GuessBox{
+  background-color: white;
+  float:left;
+  border-radius: 5px;
+  height: 100%;
+  width: 47%;
+  margin-left: 2%;
+  box-shadow: 1px 1px black;
+  text-align: center;
+}
+
+.LetterBankContainer{
+  margin-top: 5vh;
+  width: 90%;
+  height: 80vh;
+  margin-left: 1vh;
+  text-align: center;
+}
+
+.LetterBox{
+  width: 7vh;
+  height: 7vh;
+  margin-left: 1vh;
+  margin-top: 2vh;
+  border-radius: 5px;
+  display: inline-block;
+  background-color: #F0F0F0;
+  box-shadow: 1px 1px black;
+  text-align: center;
+  font-size: 3vh;
+}
+
+.LetterBox:hover{
+  background-color: rgb(183, 113, 201);
+  box-shadow: 3px 3px black;
+}
