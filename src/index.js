@@ -14,44 +14,104 @@ for (var index = 0; index < wordlength; index++){
   display[index] = '_ ';
 }
 
+var manCounter = 0;
+var man = [
+  ['__|__',<br />,'|'],
+  ['__|__',<br />,'|',<br />,'0'],
+  ['__|__',<br />,'|',<br />,'0',<br />,'|'],
+  ['__|__',<br />,'|',<br />,'0',<br />,'/|'],
+  ['__|__',<br />,'|',<br />,'0',<br />,'/|\\'],
+  ['__|__',<br />,'|',<br />,'0',<br />,'/|\\',<br />,'|'],
+  ['__|__',<br />,'|',<br />,'0',<br />,'/|\\',<br />,'|',<br />,'/'],
+  ['__|__',<br />,'|',<br />,'0',<br />,'/|\\',<br />,'|',<br />,'/\\'],
+];
+
+var incBoxCounter = 0;
+var incBox = [];
+
+var cBoxCounter = 0;
+var cBox = [];
+
+
+function chooseDisplay(code) {
+  if (code == "inc"){
+    return incBox;
+  }
+  else{
+    return cBox;
+  }
+}
+
 function updateDisplay(letter) {
-  var counter = 0;
+  var winCounter = 0;
   for (var index = 0; index < wordlength; index++){
     if (display[index].toUpperCase() != display[index].toLowerCase()){
-      counter++;
+      winCounter++;
       continue;
     }
     else if (letter == chosenWord[index].toUpperCase()){
       display[index] = (letter)+' ';
+      winCounter++;
     }
     else{
       display[index] = '_ ';
     }
   }
   ReactDOM.render(
-    <WordField />,
-    document.getElementById('WordField')
+    <Board />,
+    document.getElementById('root')
   );
+  if (winCounter == wordlength) {
+    alert('You won, the word was: ' + chosenWord);
+    window.location.reload();
+  }
 }
 
 function toCorrect(letter){
+  if (cBox.includes(letter)){
+    alert('You guessed this letter already');
+    return;
+  }
+  cBox[cBoxCounter] = letter;
+  cBoxCounter++;
   ReactDOM.render(
-    <GuessedBoxContainer />,
-    document.getElementById('GBContainer')
+    <Board />,
+    document.getElementById('root')
   );
 }
 
 function toIncorrect(letter){
+  if (incBox.includes(letter)){
+    alert('You guessed this letter already');
+    return;
+  }
+  incBox[incBoxCounter] = letter;
+  incBoxCounter++;
   ReactDOM.render(
-    <GuessedBoxContainer />,
-    document.getElementById('GBContainer')
+    <Board />,
+    document.getElementById('root')
+  );
+  if (incBoxCounter > 6) {
+    alert('Game over the word was: ' + chosenWord);
+    window.location.reload();
+  }
+}
+
+function drawMan(letter){
+  if (incBox.includes(letter)){
+    return;
+  }
+  manCounter++;
+  ReactDOM.render(
+    <Board />,
+    document.getElementById('root')
   );
 }
 
 class LHS extends React.Component{
   render() {
     return(
-      <div class = "LHS">
+      <div class = "LHS" id="LHS">
         <WordField />
         <DrawingSpace />
         <GuessedBoxContainer />
@@ -73,7 +133,7 @@ class RHS extends React.Component{
 class WordField extends React.Component{
   render() {
     return(
-      <div class="WF" id="WordField">
+      <div class="WF">
         <p class="GuessField">{display}</p>
       </div>
     )
@@ -96,8 +156,7 @@ class LetterBox extends React.Component{
         continue;
       }
     }
-    alert('Not in the word');
-    // Function used to update drawing space of hangman
+    drawMan(this.props.letter);
     toIncorrect(this.props.letter);
     return;
   }
@@ -120,33 +179,37 @@ class WordBank extends React.Component{
           </p>
         </div>
         <div class="LetterBankContainer">
-          <LetterBox letter='A'/>
-          <LetterBox letter='B'/>
-          <LetterBox letter='C'/>
-          <LetterBox letter='D'/>
-          <LetterBox letter='E'/>
-          <LetterBox letter='F'/>
-          <LetterBox letter='G'/>
-          <LetterBox letter='H'/>
-          <LetterBox letter='I'/>
-          <LetterBox letter='J'/>
-          <LetterBox letter='K'/>
-          <LetterBox letter='L'/>
-          <LetterBox letter='M'/>
-          <LetterBox letter='N'/>
-          <LetterBox letter='O'/>
-          <LetterBox letter='P'/>
-          <LetterBox letter='Q'/>
-          <LetterBox letter='R'/>
-          <LetterBox letter='S'/>
-          <LetterBox letter='T'/>
-          <LetterBox letter='U'/>
-          <LetterBox letter='V'/>
-          <LetterBox letter='W'/>
-          <LetterBox letter='X'/>
-          <LetterBox letter='Y'/>
-          <LetterBox letter='Z'/>
+          <LetterBox letter='A' id="A"/>
+          <LetterBox letter='B' id="B"/>
+          <LetterBox letter='C' id="C"/>
+          <LetterBox letter='D' id="D"/>
+          <LetterBox letter='E' id="E"/>
+          <LetterBox letter='F' id="F"/>
+          <LetterBox letter='G' id="G"/>
+          <LetterBox letter='H' id="H"/>
+          <LetterBox letter='I' id="I"/>
+          <LetterBox letter='J' id="J"/>
+          <LetterBox letter='K' id="K"/>
+          <LetterBox letter='L' id="L"/>
+          <LetterBox letter='M' id="M"/>
+          <LetterBox letter='N' id="N"/>
+          <LetterBox letter='O' id="O"/>
+          <LetterBox letter='P' id="P"/>
+          <LetterBox letter='Q' id="Q"/>
+          <LetterBox letter='R' id="R"/>
+          <LetterBox letter='S' id="S"/>
+          <LetterBox letter='T' id="T"/>
+          <LetterBox letter='U' id="U"/>
+          <LetterBox letter='V' id="V"/>
+          <LetterBox letter='W' id="W"/>
+          <LetterBox letter='X' id="X"/>
+          <LetterBox letter='Y' id="Y"/>
+          <LetterBox letter='Z' id="Z"/>
         </div>
+        <p class="WordBankInfoBox">
+            Use your mouse to click on the letter listed above. You only have 
+            6 tries. Use them wisely.
+        </p>
       </div>
     );
   }
@@ -156,14 +219,8 @@ class GuessedBoxContainer extends React.Component{
   render() {
     return(
       <div class="GuessBoxContainer" id="GBContainer">
-        <GuessedBox value="Incorrect">
-          <div id="incorrect">
-          </div>
-        </GuessedBox>
-        <GuessedBox value="Correct">
-          <div id="correct">
-          </div>
-        </GuessedBox>
+        <GuessedBox value="Incorrect" code="inc" />
+        <GuessedBox value="Correct" code="c" />
       </div>
     );
   }
@@ -171,12 +228,14 @@ class GuessedBoxContainer extends React.Component{
 
 class GuessedBox extends React.Component{
   render() {
+    var Choice = chooseDisplay(this.props.code);
     return(
       <div class="GuessBox">
           <p class="GBText">
             {this.props.value} Letters:
           </p>
-          <div id="WriteSpace">
+          <div class="LetterStorage">
+            {Choice}
           </div>
       </div>
     );
@@ -187,7 +246,11 @@ class DrawingSpace extends React.Component{
   render() {
     return(
       <div class="DS">
-        <p class="ManDrawing"> | | </p>
+        <div class="ManDrawing">
+          <p>
+            {man[manCounter]}
+          </p>
+        </div>
       </div>
     );
   }
@@ -204,10 +267,83 @@ class Board extends React.Component{
   }
 }
 
+class Options extends React.Component{
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    alert(this.props.difficulty+' difficulty words generated');
+    if(this.props.difficulty == "Easy"){
+      words = ['Hot', 'Hit', 'Banana','Egg', 'Ball', 'Happy'];
+    }
+    else if(this.props.difficulty == "Medium"){
+      words = ['Money', 'David', 'Park','About','Suck','Flame'];
+    }
+    else if(this.props.difficulty == "Hard"){
+      words = ['Absurd','Syndrome','Subway','Gossip','Galaxy','Funny'];
+    }
+    random = Math.floor(Math.random() * 6);
+    chosenWord = words[random];
+    wordlength = chosenWord.length;
+    display = []
+    for (var index = 0; index < wordlength; index++){
+      display[index] = '_ ';
+    }
+    ReactDOM.render(
+      <Board />,
+      document.getElementById('root')
+    );
+  }
+  render() {
+    return(
+      <div class="OptionMenu" onClick={this.handleClick}>
+        {this.props.difficulty} Mode
+      </div>
+    );
+  }
+}
+
+class StartMenu extends React.Component{
+  render() {
+    return(
+      <div class="StartMenu">
+        <Options difficulty="Easy" />
+        <Options difficulty="Medium" />
+        <Options difficulty="Hard" />
+      </div>
+    );
+  }
+}
+
+class Header extends React.Component{
+  render() {
+    return(
+      <div class="GameTitle">
+        HANGMAN Challenge
+      </div>
+    );
+  }
+}
+
+class Signature extends React.Component{
+  render() {
+    return(
+      <div class="Signature">
+        Developed By: Andrew Benner
+      </div>
+    );
+  }
+}
+
 ReactDOM.render(
-  <Board />,
+  <div>
+    <Header />
+    <StartMenu />
+    <Signature />
+  </div>,
   document.getElementById('root')
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
