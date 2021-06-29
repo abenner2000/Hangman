@@ -419,10 +419,10 @@ code {
   }
 
   .LetterBankContainer{
+    margin: auto;
     margin-top: 2vh;
     width: 95%;
     height: 15vh;
-    margin-left: 2vh;
     text-align: center;
   }
 
@@ -440,7 +440,7 @@ code {
     height: 5vh;
     border-radius: 5px;
     margin: auto;
-    margin-top: 3vh;
+    margin-top: 6vh;
     background-color: rgb(175, 199, 202);
     box-shadow: 1px 2px black;
     text-align:center;
