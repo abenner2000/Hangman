@@ -170,6 +170,9 @@ class LetterBox extends React.Component{
 }
 
 class WordBank extends React.Component{
+  myClick() {
+    alert("Click the letters to guess. You get 7 attempts!");
+  }
   render() {
     return(
       <div>
@@ -206,9 +209,8 @@ class WordBank extends React.Component{
           <LetterBox letter='Y' id="Y"/>
           <LetterBox letter='Z' id="Z"/>
         </div>
-        <p class="WordBankInfoBox">
-            Use your mouse to click on the letter listed above. You only have 
-            6 tries. Use them wisely.
+        <p class="WordBankInfoBox" onClick={this.myClick}>
+            Rules
         </p>
       </div>
     );
